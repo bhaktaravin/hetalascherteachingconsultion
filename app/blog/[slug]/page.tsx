@@ -4,6 +4,8 @@ import Navbar from "@/app/components/Navbar";
 import SiteFooter from "@/app/components/SiteFooter";
 import { getPublishedPostBySlug } from "@/lib/posts";
 
+export const dynamic = "force-dynamic";
+
 type PageProps = {
   params: Promise<{ slug: string }>;
 };

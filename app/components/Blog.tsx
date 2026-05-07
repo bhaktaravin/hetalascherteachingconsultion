@@ -18,7 +18,12 @@ const getReadTime = (content: string) => {
 };
 
 export default async function Blog() {
-  const posts = await getPublishedPosts();
+  let posts = [] as Awaited<ReturnType<typeof getPublishedPosts>>;
+  try {
+    posts = await getPublishedPosts();
+  } catch {
+    posts = [];
+  }
   const [featuredPost, ...otherPosts] = posts;
 
   return (
