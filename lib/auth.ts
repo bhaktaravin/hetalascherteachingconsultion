@@ -1,8 +1,7 @@
 import type { Session } from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import { getServerSession } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
+import CognitoProvider from "next-auth/providers/cognito";
 
 const splitAdminEmails = (raw: string | undefined) =>
   (raw ?? "")
@@ -11,49 +10,20 @@ const splitAdminEmails = (raw: string | undefined) =>
     .filter(Boolean);
 
 export const getAdminEmails = () => splitAdminEmails(process.env.ADMIN_EMAILS);
-export const getAdminUsername = () => (process.env.ADMIN_USERNAME ?? "").trim().toLowerCase();
 
 export const authOptions: NextAuthOptions = {
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-    }),
-    CredentialsProvider({
-      name: "Credentials",
-      credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials) {
-        const configuredUsername = getAdminUsername();
-        const configuredPassword = process.env.ADMIN_PASSWORD ?? "";
-        const username = credentials?.username?.trim().toLowerCase() ?? "";
-        const password = credentials?.password ?? "";
-
-        if (!configuredUsername || !configuredPassword) {
-          return null;
-        }
-        if (username !== configuredUsername || password !== configuredPassword) {
-          return null;
-        }
-
-        return {
-          id: "admin-credentials-user",
-          email: configuredUsername,
-          name: "Admin",
-        };
-      },
+    CognitoProvider({
+      clientId: process.env.COGNITO_CLIENT_ID ?? "",
+      clientSecret: process.env.COGNITO_CLIENT_SECRET ?? "",
+      issuer: process.env.COGNITO_ISSUER ?? "",
     }),
   ],
   session: {
     strategy: "jwt",
   },
   callbacks: {
-    async signIn({ user, account }) {
-      if (account?.provider === "credentials") {
-        return true;
-      }
+    async signIn({ user }) {
       const adminEmails = getAdminEmails();
       const userEmail = user.email?.toLowerCase();
       return Boolean(userEmail && adminEmails.includes(userEmail));
@@ -74,8 +44,7 @@ export const getServerAuthSession = () => getServerSession(authOptions);
 
 export const isAdminSession = (session: Session | null) => {
   const email = session?.user?.email?.toLowerCase();
-  if (!email) return false;
-  return getAdminEmails().includes(email) || email === getAdminUsername();
+  return Boolean(email && getAdminEmails().includes(email));
 };
 
 export async function requireAdminSession() {

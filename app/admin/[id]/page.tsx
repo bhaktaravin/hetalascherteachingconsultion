@@ -5,7 +5,7 @@ import Navbar from "@/app/components/Navbar";
 import SiteFooter from "@/app/components/SiteFooter";
 import PostForm from "@/app/components/admin/PostForm";
 import { isAdminSession, requireAdminSession } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { posts } from "@/lib/schema";
 
 type PageProps = {
@@ -13,6 +13,7 @@ type PageProps = {
 };
 
 export default async function EditPostPage({ params }: PageProps) {
+  const db = getDb();
   const session = await requireAdminSession();
   if (!isAdminSession(session)) {
     redirect("/login");

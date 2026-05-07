@@ -2,13 +2,14 @@ import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 import { requireAdminSession } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { posts } from "@/lib/schema";
 import { updatePostSchema } from "@/lib/validators/post";
 
 type ParamsContext = { params: Promise<{ id: string }> };
 
 export async function GET(_request: Request, { params }: ParamsContext) {
+  const db = getDb();
   const { id } = await params;
   const adminSession = await requireAdminSession();
 
@@ -23,6 +24,7 @@ export async function GET(_request: Request, { params }: ParamsContext) {
 }
 
 export async function PATCH(request: Request, { params }: ParamsContext) {
+  const db = getDb();
   const adminSession = await requireAdminSession();
   if (!adminSession) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -60,6 +62,7 @@ export async function PATCH(request: Request, { params }: ParamsContext) {
 }
 
 export async function DELETE(_request: Request, { params }: ParamsContext) {
+  const db = getDb();
   const adminSession = await requireAdminSession();
   if (!adminSession) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

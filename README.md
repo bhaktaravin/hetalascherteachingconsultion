@@ -3,7 +3,7 @@
 Next.js 16 marketing site with:
 - public pages (`/`, `/about`, `/blog`, `/contact`)
 - Neon Postgres-backed blog content
-- Google sign-in admin area for post management (`/admin`)
+- AWS Cognito sign-in admin area for post management (`/admin`)
 
 ## Local Setup
 
@@ -21,11 +21,10 @@ cp .env.example .env.local
 - `DATABASE_URL` (Neon Postgres connection string)
 - `NEXTAUTH_URL` (e.g. `http://localhost:3000`)
 - `NEXTAUTH_SECRET`
-- `GOOGLE_CLIENT_ID`
-- `GOOGLE_CLIENT_SECRET`
+- `COGNITO_CLIENT_ID`
+- `COGNITO_CLIENT_SECRET`
+- `COGNITO_ISSUER`
 - `ADMIN_EMAILS` (comma-separated allowed editor emails)
-- `ADMIN_USERNAME` (optional fallback credentials login username)
-- `ADMIN_PASSWORD` (optional fallback credentials login password)
 
 4. Generate and run DB migrations:
 ```bash
@@ -40,7 +39,7 @@ npm run dev
 
 ## Blog Admin
 
-- Visit `/login` and sign in with approved Google account or fallback admin credentials.
+- Visit `/login` and sign in with approved Cognito account.
 - Visit `/admin` to create, edit, publish, or delete posts.
 - Public blog readers only see posts with `status = "published"`.
 

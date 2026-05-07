@@ -2,11 +2,12 @@ import { desc, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 import { requireAdminSession } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { posts } from "@/lib/schema";
 import { createPostSchema } from "@/lib/validators/post";
 
 export async function GET(request: Request) {
+  const db = getDb();
   const url = new URL(request.url);
   const status = url.searchParams.get("status");
   const slug = url.searchParams.get("slug");
@@ -38,6 +39,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const db = getDb();
   const adminSession = await requireAdminSession();
   if (!adminSession) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

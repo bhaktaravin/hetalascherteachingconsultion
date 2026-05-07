@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import Navbar from "@/app/components/Navbar";
 import SiteFooter from "@/app/components/SiteFooter";
 import { isAdminSession, requireAdminSession } from "@/lib/auth";
-import { db } from "@/lib/db";
+import { getDb } from "@/lib/db";
 import { posts } from "@/lib/schema";
 
 const formatDate = (value: Date | string | null) => {
@@ -19,6 +19,7 @@ const formatDate = (value: Date | string | null) => {
 };
 
 export default async function AdminPage() {
+  const db = getDb();
   const session = await requireAdminSession();
   if (!isAdminSession(session)) {
     redirect("/login");
