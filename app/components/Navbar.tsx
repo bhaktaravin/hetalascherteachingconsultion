@@ -24,7 +24,7 @@ export default function Navbar(){
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex min-h-11 items-center rounded-md px-2 font-serif text-lg font-semibold text-[color:var(--color-brand)]"
+            className="inline-flex min-h-11 items-center rounded-md px-2 font-serif text-lg font-semibold text-[var(--color-brand)]"
           >
             Hetal Ascher Consulting
           </Link>
@@ -51,8 +51,8 @@ export default function Navbar(){
                 aria-current={isActive ? "page" : undefined}
                 className={`inline-flex min-h-11 items-center rounded-md px-2 text-base font-medium transition ${
                   isActive
-                    ? "text-[color:var(--color-brand)] underline underline-offset-8"
-                    : "text-gray-900 hover:text-[color:var(--color-brand)]"
+                    ? "text-[var(--color-brand)] underline underline-offset-8"
+                    : "text-gray-900 hover:text-[var(--color-brand)]"
                 }`}
               >
                 {link.label}
@@ -74,8 +74,8 @@ export default function Navbar(){
                     aria-current={isActive ? "page" : undefined}
                     className={`inline-flex min-h-11 items-center rounded-md px-2 text-base font-medium transition ${
                       isActive
-                        ? "text-[color:var(--color-brand)]"
-                        : "text-gray-900 hover:text-[color:var(--color-brand)]"
+                        ? "text-[var(--color-brand)]"
+                        : "text-gray-900 hover:text-[var(--color-brand)]"
                     }`}
                   >
                     {link.label}

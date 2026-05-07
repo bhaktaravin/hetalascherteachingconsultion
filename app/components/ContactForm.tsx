@@ -7,7 +7,7 @@ export default function ContactForm() {
     Get in Touch
   </p>
 
-  <h1 className="mt-3 text-3xl font-serif font-bold text-[color:var(--color-brand)] sm:text-5xl">
+  <h1 className="mt-3 text-3xl font-serif font-bold text-[var(--color-brand)] sm:text-5xl">
     Contact Me
   </h1>
 
@@ -20,28 +20,28 @@ export default function ContactForm() {
   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <input
       placeholder="First Name"
-      className="min-h-11 rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-brand)]"
+      className="min-h-11 rounded-lg border border-gray-300 p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand)]"
     />
 
     <input
       placeholder="Last Name"
-      className="min-h-11 rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-brand)]"
+      className="min-h-11 rounded-lg border border-gray-300 p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand)]"
     />
   </div>
 
   <input
     placeholder="Email Address"
-    className="min-h-11 w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-brand)]"
+    className="min-h-11 w-full rounded-lg border border-gray-300 p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand)]"
   />
 
   <textarea
     placeholder="Message"
     rows={6}
-    className="w-full rounded-lg border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-brand)]"
+    className="w-full rounded-lg border border-gray-300 p-3 text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand)]"
   />
 
   <button
-    className="min-h-11 w-full rounded-lg bg-[color:var(--color-brand)] py-3 font-medium text-white
+    className="min-h-11 w-full rounded-lg bg-[var(--color-brand)] py-3 font-medium text-white
     hover:opacity-90 transition"
   >
     Send Message
