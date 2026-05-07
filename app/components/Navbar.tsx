@@ -42,7 +42,7 @@ export default function Navbar(){
         <header
           className={`sticky top-0 z-30 w-full backdrop-blur ${
             homeUsesOverlay
-              ? "border-b border-white/20 bg-black/20"
+              ? "border-b border-white/20 bg-black/30"
               : "border-b border-gray-200/80 bg-white/95"
           }`}
         >
@@ -60,7 +60,7 @@ export default function Navbar(){
           <button
             type="button"
             className={`inline-flex min-h-11 min-w-11 items-center justify-center rounded-md border px-3 md:hidden ${
-              homeUsesOverlay ? "border-white/50 text-white" : "border-gray-300 text-gray-900"
+              homeUsesOverlay ? "border-white/60 text-white drop-shadow-sm" : "border-gray-300 text-gray-900"
             }`}
             aria-expanded={isOpen}
             aria-controls="mobile-nav-links"
@@ -78,7 +78,7 @@ export default function Navbar(){
               onClick={toggleHomeNavStyle}
               className={`rounded-md border px-3 py-1 text-xs font-semibold uppercase tracking-wide transition ${
                 homeUsesOverlay
-                  ? "border-white/50 text-white hover:bg-white/10"
+                  ? "border-white/60 text-white drop-shadow-sm hover:bg-white/10"
                   : "border-gray-300 text-gray-800 hover:bg-gray-100"
               }`}
             >
@@ -98,10 +98,10 @@ export default function Navbar(){
                 className={`inline-flex min-h-11 items-center rounded-md px-2 text-base font-medium transition ${
                   isActive
                     ? homeUsesOverlay
-                      ? "text-white underline underline-offset-8"
+                      ? "text-white font-semibold [text-shadow:0_1px_2px_rgba(0,0,0,0.45)] underline underline-offset-8"
                       : "text-[var(--color-brand)] underline underline-offset-8"
                     : homeUsesOverlay
-                      ? "text-white/90 hover:text-white"
+                      ? "text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.45)] hover:text-white"
                       : "text-gray-900 hover:text-[var(--color-brand)]"
                 }`}
               >
@@ -124,7 +124,7 @@ export default function Navbar(){
                 onClick={toggleHomeNavStyle}
                 className={`mb-2 inline-flex min-h-10 items-center rounded-md border px-3 text-xs font-semibold uppercase tracking-wide transition ${
                   homeUsesOverlay
-                    ? "border-white/50 text-white hover:bg-white/10"
+                    ? "border-white/60 text-white drop-shadow-sm hover:bg-white/10"
                     : "border-gray-300 text-gray-800 hover:bg-gray-100"
                 }`}
               >
@@ -143,10 +143,10 @@ export default function Navbar(){
                     className={`inline-flex min-h-11 items-center rounded-md px-2 text-base font-medium transition ${
                       isActive
                         ? homeUsesOverlay
-                          ? "text-white"
+                          ? "text-white font-semibold [text-shadow:0_1px_2px_rgba(0,0,0,0.45)]"
                           : "text-[var(--color-brand)]"
                         : homeUsesOverlay
-                          ? "text-white/90 hover:text-white"
+                          ? "text-white/95 [text-shadow:0_1px_2px_rgba(0,0,0,0.45)] hover:text-white"
                           : "text-gray-900 hover:text-[var(--color-brand)]"
                     }`}
                   >
