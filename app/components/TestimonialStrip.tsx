@@ -27,7 +27,8 @@ export default function TestimonialStrip() {
           </span>
         </div>
         <blockquote className="mt-4 font-serif text-2xl leading-relaxed text-[var(--color-brand)] sm:text-3xl reveal-up reveal-delay-1">
-          "It was a useful course with good pacing, lots of new techniques that are implementable, and the trainer was a supportive professional learning leader."
+          &ldquo;It was a useful course with good pacing, lots of new techniques that are implementable, and the
+          trainer was a supportive professional learning leader.&rdquo;
         </blockquote>
         <p className="mt-5 text-sm font-semibold text-gray-900 reveal-up reveal-delay-2">Adam Deshpande</p>
         <p className="text-sm text-gray-600 reveal-up reveal-delay-3">United World College Singapore</p>

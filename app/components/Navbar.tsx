@@ -1,6 +1,6 @@
  "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -16,19 +16,17 @@ const links = [
 export default function Navbar(){
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
-    const [useOverlayStyle, setUseOverlayStyle] = useState(true);
+    const [useOverlayStyle, setUseOverlayStyle] = useState(() => {
+      if (typeof window === "undefined") {
+        return true;
+      }
+      return window.localStorage.getItem("homeNavStyle") !== "classic";
+    });
     const isHome = pathname === "/";
     const showBrandTitle = pathname !== "/";
     const homeUsesOverlay = isHome && useOverlayStyle;
 
     const closeMenu = () => setIsOpen(false);
-
-    useEffect(() => {
-      const savedStyle = window.localStorage.getItem("homeNavStyle");
-      if (savedStyle === "classic") {
-        setUseOverlayStyle(false);
-      }
-    }, []);
 
     const toggleHomeNavStyle = () => {
       setUseOverlayStyle((current) => {
