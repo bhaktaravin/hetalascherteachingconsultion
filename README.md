@@ -24,6 +24,8 @@ cp .env.example .env.local
 - `GOOGLE_CLIENT_ID`
 - `GOOGLE_CLIENT_SECRET`
 - `ADMIN_EMAILS` (comma-separated allowed editor emails)
+- `ADMIN_USERNAME` (optional fallback credentials login username)
+- `ADMIN_PASSWORD` (optional fallback credentials login password)
 
 4. Generate and run DB migrations:
 ```bash
@@ -38,7 +40,7 @@ npm run dev
 
 ## Blog Admin
 
-- Visit `/login` and sign in with approved Google account.
+- Visit `/login` and sign in with approved Google account or fallback admin credentials.
 - Visit `/admin` to create, edit, publish, or delete posts.
 - Public blog readers only see posts with `status = "published"`.
 

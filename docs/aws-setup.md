@@ -3,6 +3,7 @@
 This project now uses:
 - Neon Postgres for blog storage
 - Auth.js (NextAuth v4) + Google OAuth for admin access
+- Optional fallback credentials login for admin access
 
 ## 1) Neon database
 
@@ -29,8 +30,9 @@ Set:
 - `NEXTAUTH_URL` to your site URL
 - `NEXTAUTH_SECRET` to a strong random value
 - `ADMIN_EMAILS` to a comma-separated allowlist of editor emails
+- `ADMIN_USERNAME` and `ADMIN_PASSWORD` for optional fallback credentials login
 
-Only emails listed in `ADMIN_EMAILS` can sign in and access `/admin`.
+Only emails listed in `ADMIN_EMAILS`, or the exact `ADMIN_USERNAME`, can access `/admin`.
 
 ## 4) Hosting on AWS
 
