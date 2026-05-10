@@ -8,7 +8,7 @@ export default function Hero(){
   style={{
     backgroundColor: "#1f2937",
     backgroundImage:
-      "linear-gradient(rgba(31, 41, 55, 0.55), rgba(31, 41, 55, 0.55)), url('/hero.jpg')",
+      "linear-gradient(rgba(31, 41, 55, 0.55), rgba(31, 41, 55, 0.55)), url('/OIP-1528868636.jpg')",
   }}
 >
   <div className="absolute inset-0 bg-black/35" />
