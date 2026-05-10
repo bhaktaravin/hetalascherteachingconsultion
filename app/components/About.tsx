@@ -1,11 +1,5 @@
 import Image from "next/image";
-
-const expertise = [
-  "Multilingual learner education",
-  "Teaching reading and writing for multilingual learners",
-  "Scaffolding instruction in mainstream classrooms",
-  "Hands-on professional learning for educators",
-];
+import FocusAreasAccordion from "./FocusAreasAccordion";
 
 export default function About() {
   return (
@@ -53,19 +47,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="mt-8">
-          <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-gray-500">Core Focus Areas</h2>
-          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
-            {expertise.map((item) => (
-              <li
-                key={item}
-                className="rounded-lg border border-gray-200 bg-[var(--color-brand-soft)] px-4 py-3 text-sm text-gray-800"
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <FocusAreasAccordion />
       </div>
     </section>
   );
