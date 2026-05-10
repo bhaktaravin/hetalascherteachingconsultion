@@ -46,7 +46,7 @@ export default function FocusAreasAccordion() {
       <p className="mt-2 text-sm text-gray-600">
         Select a focus area to read about typical workshop themes and the kinds of settings where this work has taken place.
       </p>
-      <ul className="mt-3 grid list-none gap-2 p-0 sm:grid-cols-2">
+      <ul className="mt-3 grid list-none gap-2 p-0 md:grid-cols-2">
         {focusAreas.map((area, index) => {
           const isOpen = openIndex === index;
           const panelId = `${baseId}-panel-${index}`;
@@ -77,9 +77,8 @@ export default function FocusAreasAccordion() {
                     ▼
                   </span>
                 </button>
-                <div
+                <section
                   id={panelId}
-                  role="region"
                   aria-labelledby={triggerId}
                   hidden={!isOpen}
                   className="space-y-2 border-t border-gray-200/90 px-4 pt-3 pb-4 text-sm leading-relaxed text-gray-600"
@@ -87,7 +86,7 @@ export default function FocusAreasAccordion() {
                   {area.paragraphs.map((p, i) => (
                     <p key={`${area.title}-${i}`}>{p}</p>
                   ))}
-                </div>
+                </section>
               </div>
             </li>
           );
