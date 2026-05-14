@@ -70,6 +70,15 @@ export default function About() {
                 She has worked across both U.S. public schools and British international schools in Asia, with
                 experience in Common Core, IGCSE, and IB curricula.
               </p>
+              <p className="mt-3 text-sm">
+                <a
+                  href="#experience-partners"
+                  className="font-medium text-[var(--color-brand)] underline decoration-[var(--color-brand)]/30 underline-offset-4 transition hover:decoration-[var(--color-brand)]"
+                >
+                  Regions & partners
+                </a>{" "}
+                <span className="text-gray-500">(more detail below)</span>
+              </p>
             </div>
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.15em] text-gray-500">

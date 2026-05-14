@@ -7,7 +7,7 @@ import Navbar from "@/app/components/Navbar";
 import SiteFooter from "@/app/components/SiteFooter";
 import { isAdminSession, requireAdminSession } from "@/lib/auth";
 import { getDb } from "@/lib/db";
-import { posts } from "@/lib/schema";
+import { contactSubmissions, posts } from "@/lib/schema";
 
 const formatDate = (value: Date | string | null) => {
   if (!value) return "Not published";
@@ -18,6 +18,32 @@ const formatDate = (value: Date | string | null) => {
   });
 };
 
+const formatDateTime = (value: Date | string) =>
+  new Date(value).toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+
+const roleLabels: Record<string, string> = {
+  teacher: "Teacher",
+  instructional_coach: "Instructional coach",
+  administrator: "School or district leader",
+  parent: "Parent or caregiver",
+  other: "Other",
+};
+
+const topicLabels: Record<string, string> = {
+  instructional_coaching: "Instructional coaching",
+  professional_learning: "Professional learning / PD",
+  curriculum_assessment: "Curriculum and assessment",
+  multilingual_learners: "Multilingual learners",
+  leadership_systems: "Leadership and systems",
+  other: "Something else",
+};
+
 export default async function AdminPage() {
   const db = getDb();
   const session = await requireAdminSession();
@@ -26,6 +52,7 @@ export default async function AdminPage() {
   }
 
   const allPosts = await db.select().from(posts).orderBy(desc(posts.updatedAt), desc(posts.createdAt));
+  const inquiries = await db.select().from(contactSubmissions).orderBy(desc(contactSubmissions.createdAt));
 
   async function deletePostAction(formData: FormData) {
     "use server";
@@ -97,6 +124,47 @@ export default async function AdminPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          <div className="mt-14 border-t border-gray-200 pt-10">
+            <h2 className="font-serif text-2xl font-bold text-[var(--color-brand)]">Contact inquiries</h2>
+            <p className="mt-2 text-sm text-gray-600">Messages sent from the public contact form.</p>
+            {inquiries.length === 0 ? (
+              <p className="mt-6 text-sm text-gray-500">No messages yet.</p>
+            ) : (
+              <div className="mt-6 overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200 text-left text-sm">
+                  <thead className="text-gray-500">
+                    <tr>
+                      <th className="px-3 py-3 font-semibold">Received</th>
+                      <th className="px-3 py-3 font-semibold">Name</th>
+                      <th className="px-3 py-3 font-semibold">Email</th>
+                      <th className="px-3 py-3 font-semibold">Role</th>
+                      <th className="px-3 py-3 font-semibold">Topic</th>
+                      <th className="px-3 py-3 font-semibold">Message</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100 text-gray-800">
+                    {inquiries.map((row) => (
+                      <tr key={row.id} className="align-top">
+                        <td className="whitespace-nowrap px-3 py-3 text-gray-600">{formatDateTime(row.createdAt)}</td>
+                        <td className="px-3 py-3">
+                          {row.firstName} {row.lastName}
+                        </td>
+                        <td className="px-3 py-3">
+                          <a href={`mailto:${row.email}`} className="text-[var(--color-brand)] underline underline-offset-4">
+                            {row.email}
+                          </a>
+                        </td>
+                        <td className="px-3 py-3">{roleLabels[row.role] ?? row.role}</td>
+                        <td className="px-3 py-3">{topicLabels[row.topic] ?? row.topic}</td>
+                        <td className="max-w-md px-3 py-3 whitespace-pre-wrap text-gray-700">{row.message}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
           </div>
         </div>
       </section>

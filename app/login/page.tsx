@@ -7,9 +7,9 @@ export default function LoginPage() {
     <main className="min-h-screen bg-gray-50 px-4 py-20 sm:px-6">
       <div className="mx-auto max-w-md rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">Admin Access</p>
-        <h1 className="mt-3 font-serif text-3xl font-bold text-[var(--color-brand)]">Sign in to manage posts</h1>
+        <h1 className="mt-3 font-serif text-3xl font-bold text-[var(--color-brand)]">Sign in to admin</h1>
         <p className="mt-3 text-gray-700">
-          Use your approved Cognito account to access the blog admin dashboard.
+          Use your approved Cognito account to access the admin dashboard.
         </p>
         <button
           type="button"

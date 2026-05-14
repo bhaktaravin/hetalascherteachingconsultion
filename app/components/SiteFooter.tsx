@@ -21,9 +21,6 @@ export default function SiteFooter() {
             <Link href="/about" className="text-gray-800 transition hover:text-[var(--color-brand)]">
               About
             </Link>
-            <Link href="/blog" className="text-gray-800 transition hover:text-[var(--color-brand)]">
-              Blog
-            </Link>
             <Link href="/contact" className="text-gray-800 transition hover:text-[var(--color-brand)]">
               Contact
             </Link>
